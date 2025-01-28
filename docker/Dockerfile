@@ -18,7 +18,7 @@ ENV INVOKEAI_SRC=/opt/invokeai
 ENV VIRTUAL_ENV=/opt/venv/invokeai
 
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-ARG GPU_DRIVER=cuda
+ARG GPU_DRIVER=rocm
 ARG TARGETPLATFORM="linux/amd64"
 # unused but available
 ARG BUILDPLATFORM
