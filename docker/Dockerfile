@@ -2,7 +2,7 @@
 
 ## Builder stage
 
-FROM library/ubuntu:23.04 AS builder
+FROM library/ubuntu:23.04 AS runtime
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache
@@ -72,7 +72,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
-RUN apt update && apt install -y --no-install-recommends \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
         git \
         curl \
         vim \
@@ -88,8 +89,8 @@ RUN apt update && apt install -y --no-install-recommends \
         python3-pip \
         build-essential \
         libopencv-dev \
-        libstdc++-10-dev &&\
-    apt-get clean && apt-get autoclean
+        libstdc++-10-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 
 ENV INVOKEAI_SRC=/opt/invokeai
