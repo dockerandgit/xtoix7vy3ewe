@@ -17,8 +17,12 @@ RUN pip install --no-cache-dir yt-dlp selenium requests
 ENV CHROME_BIN=/usr/bin/chromium \
     CHROMEDRIVER_BIN=/usr/bin/chromedriver
 
+# Create working directory
+WORKDIR /app
+
 # Define volume for external config mapping
 VOLUME /config
+VOLUME /data
 
 # Run the script from the mapped config directory
 CMD ["python", "/config/archive_trailers.py"]
