@@ -1,9 +1,0 @@
-*
-!invokeai
-!pyproject.toml
-!docker/docker-entrypoint.sh
-!LICENSE
-
-**/node_modules
-**/__pycache__
-**/*.egg-info
